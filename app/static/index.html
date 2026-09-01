@@ -3,34 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Office AI 自动化办公助手</title>
+<title>Office AI</title>
 <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
 <header class="topbar">
-  <div class="brand">📄 Office AI 自动化办公助手</div>
-  <div class="model-info" id="modelInfo">AI 尚未配置</div>
-  <button id="logoutBtn" class="logout-btn" onclick="doLogout()" hidden>退出登录</button>
+  <div class="brand">Office AI</div>
+  <div class="topbar-right">
+    <div class="model-info" id="modelInfo">AI 尚未配置</div>
+    <button id="logoutBtn" class="logout-btn" onclick="doLogout()" hidden>退出登录</button>
+  </div>
 </header>
 
 <nav class="tabs" id="tabs">
-  <button class="tab active" data-tab="chat">💬 AI 助手</button>
-  <button class="tab" data-tab="word">📝 Word 文档</button>
-  <button class="tab" data-tab="excel">📊 Excel 表格</button>
-  <button class="tab" data-tab="ppt">📽️ PPT 演示</button>
-  <button class="tab" data-tab="batch">🗂️ 批量处理</button>
-  <button class="tab" data-tab="settings">⚙️ 设置</button>
+  <button class="tab active" data-tab="chat">AI 助手</button>
+  <button class="tab" data-tab="word">Word 文档</button>
+  <button class="tab" data-tab="excel">Excel 表格</button>
+  <button class="tab" data-tab="ppt">PPT 演示</button>
+  <button class="tab" data-tab="batch">批量处理</button>
+  <button class="tab" data-tab="settings">设置</button>
 </nav>
 
 <main>
-  <!-- ============ AI 助手 ============ -->
   <section id="tab-chat" class="panel active">
     <div class="card chat-card">
       <div class="chat-log" id="chatLog">
-        <div class="msg system">欢迎使用！我可以帮你总结资料、撰写文案、规划方案等等。在「设置」中接入免费大模型后即可开始。</div>
+        <div class="msg system">欢迎使用。我可以帮你总结资料、撰写文案、规划方案等等。在「设置」中接入免费大模型后即可开始。</div>
       </div>
-      <textarea id="chatInput" rows="3" placeholder="输入你的指令，例如：帮我写一份项目总结报告的提纲…"></textarea>
+      <textarea id="chatInput" rows="3" placeholder="输入你的指令，例如：帮我写一份项目总结报告的提纲"></textarea>
       <div class="row">
         <button class="primary" onclick="sendChat()">发送</button>
         <button onclick="clearChat()">清空对话</button>
@@ -39,22 +40,21 @@
     </div>
   </section>
 
-  <!-- ============ Word ============ -->
   <section id="tab-word" class="panel">
     <div class="card">
-      <h3>🤖 AI 一键生成 Word 文档</h3>
+      <h3>AI 生成 Word 文档</h3>
       <label>文档主题 *</label>
       <input id="wordTopic" placeholder="例如：2026 年度个人工作总结">
       <label>附加要求（可选）</label>
       <textarea id="wordExtra" rows="2" placeholder="例如：语言正式、分四个章节、约 1500 字"></textarea>
-      <label><input type="checkbox" id="wordAsPdf"> 同时下载 PDF 版本（需服务器安装 LibreOffice）</label>
-      <button class="primary" onclick="genWord()">一键生成并下载 .docx</button>
+      <label class="checkbox-label"><input type="checkbox" id="wordAsPdf"> 同时下载 PDF 版本（需服务器安装 LibreOffice）</label>
+      <button class="primary" onclick="genWord()">生成并下载 DOCX</button>
     </div>
     <div class="card">
-      <h3>🛠️ 处理已有的 Word 文档</h3>
+      <h3>处理已有 Word 文档</h3>
       <input type="file" id="wordFile" accept=".docx" hidden onchange="onFilePick('wordFile','wordFileName')">
       <div class="row">
-        <button onclick="pickFile('wordFile')">📂 选择 Word 文档</button>
+        <button onclick="pickFile('wordFile')">选择 Word 文档</button>
         <span id="wordFileName" class="file-name">未选择文件</span>
       </div>
       <div class="row">
@@ -67,15 +67,15 @@
       </div>
       <textarea id="wordSummary" class="result-box" readonly placeholder="生成的摘要将显示在这里"></textarea>
       <div class="row">
-        <button onclick="downloadTxt('wordSummary','word_summary.txt')">💾 下载摘要</button>
-        <button class="primary" onclick="convertToPdf('wordFile')">📄 转为 PDF（源文件）</button>
+        <button onclick="downloadTxt('wordSummary','word_summary.txt')">下载摘要</button>
+        <button class="primary" onclick="convertToPdf('wordFile')">转为 PDF</button>
       </div>
     </div>
     <div class="card">
-      <h3>📋 Word 模板套用（{{占位符}} 填充）</h3>
+      <h3>Word 模板套用（填充占位符）</h3>
       <input type="file" id="tplFile" accept=".docx" hidden onchange="onFilePick('tplFile','tplFileName')">
       <div class="row">
-        <button onclick="pickFile('tplFile')">📂 选择模板 .docx</button>
+        <button onclick="pickFile('tplFile')">选择模板 DOCX</button>
         <span id="tplFileName" class="file-name">未选择文件</span>
         <button class="primary" onclick="tplFields()">识别占位符</button>
       </div>
@@ -83,8 +83,8 @@
       <label>填写背景（AI 智能填值时使用，可选）</label>
       <input id="tplContext" placeholder="例如：这是发给新员工的入职通知信">
       <div class="row">
-        <button onclick="tplAiSuggest()">✨ AI 智能填值</button>
-        <button class="primary" onclick="tplFill()">📥 填写并下载</button>
+        <button onclick="tplAiSuggest()">AI 智能填值</button>
+        <button class="primary" onclick="tplFill()">填写并下载</button>
       </div>
     </div>
   </section>
@@ -92,22 +92,22 @@
 <!-- ============ Excel ============ -->
   <section id="tab-excel" class="panel">
     <div class="card">
-      <h3>📊 Excel AI 分析</h3>
+      <h3>Excel AI 分析</h3>
       <input type="file" id="excelFile" accept=".xlsx,.xlsm,.xltx,.xls" hidden onchange="onExcelPick(event)">
       <div class="row">
-        <button onclick="pickFile('excelFile')">📂 选择 Excel 文件</button>
+        <button onclick="pickFile('excelFile')">选择 Excel 文件</button>
         <span id="excelFileName" class="file-name">未选择文件</span>
       </div>
       <label>分析附加要求（可选）</label>
       <input id="excelExtra" placeholder="例如：重点关注销售趋势与异常">
       <div class="row">
-        <button class="primary" onclick="excelAnalyze()">🔍 AI 数据分析</button>
-        <button onclick="excelReport()">📝 分析结果写入新工作表并下载</button>
+        <button class="primary" onclick="excelAnalyze()">AI 数据分析</button>
+        <button onclick="excelReport()">分析报告写入新工作表并下载</button>
       </div>
       <textarea id="excelAnalysis" class="result-box" readonly placeholder="AI 分析结果将显示在这里"></textarea>
     </div>
     <div class="card">
-      <h3>🛠️ Excel 自动化操作</h3>
+      <h3>Excel 自动化操作</h3>
       <div class="row">
         <label>工作表：</label>
         <select id="excelSheet"></select>
@@ -116,13 +116,13 @@
           <option value="bar">柱状图</option>
           <option value="line">折线图</option>
         </select>
-        <button class="primary" onclick="excelChart()">📈 生成图表并下载</button>
+        <button class="primary" onclick="excelChart()">生成图表并下载</button>
       </div>
       <div class="row">
         <label>生成行数：</label>
         <input id="excelN" type="number" value="10" min="1" max="200" style="width:80px">
         <input id="excelExtra2" placeholder="生成要求，如：只生成 2026 年 1 月数据" style="flex:1">
-        <button class="primary" onclick="excelGenRows()">🧬 按表头生成数据</button>
+        <button class="primary" onclick="excelGenRows()">按表头生成数据</button>
       </div>
       <p class="hint">说明：「AI 数据分析」会读取首 20 行样例交给大模型；「按表头生成数据」要求所选工作表第一行是表头。</p>
     </div>
@@ -131,7 +131,7 @@
   <!-- ============ PPT ============ -->
   <section id="tab-ppt" class="panel">
     <div class="card">
-      <h3>🤖 AI 一键生成 PPT</h3>
+      <h3>AI 生成 PPT</h3>
       <label>演示主题 *</label>
       <input id="pptTopic" placeholder="例如：人工智能行业发展报告">
       <div class="row">
@@ -141,20 +141,20 @@
         <input id="pptExtra" placeholder="例如：面向企业客户，风格专业" style="flex:1">
       </div>
       <label><input type="checkbox" id="pptAsPdf"> 同时下载 PDF 版本（需服务器安装 LibreOffice）</label>
-      <button class="primary" onclick="genPpt()">🎬 一键生成并下载 .pptx</button>
+      <button class="primary" onclick="genPpt()">生成并下载 PPTX</button>
     </div>
     <div class="card">
-      <h3>🛠️ 处理已有的 PPT</h3>
+      <h3>处理已有 PPT</h3>
       <input type="file" id="pptFile" accept=".pptx" hidden onchange="onFilePick('pptFile','pptFileName')">
       <div class="row">
-        <button onclick="pickFile('pptFile')">📂 选择 PPT 文件</button>
+        <button onclick="pickFile('pptFile')">选择 PPT 文件</button>
         <span id="pptFileName" class="file-name">未选择文件</span>
         <button class="primary" onclick="pptSummarize()">生成摘要</button>
-        <button onclick="convertToPdf('pptFile')">📄 转 PDF</button>
+        <button onclick="convertToPdf('pptFile')">转 PDF</button>
       </div>
       <textarea id="pptSummary" class="result-box" readonly placeholder="PPT 摘要将显示在这里"></textarea>
       <div class="row">
-        <button onclick="downloadTxt('pptSummary','ppt_summary.txt')">💾 下载摘要</button>
+        <button onclick="downloadTxt('pptSummary','ppt_summary.txt')">下载摘要</button>
       </div>
     </div>
   </section>
@@ -162,10 +162,10 @@
   <!-- ============ 批量处理 ============ -->
   <section id="tab-batch" class="panel">
     <div class="card">
-      <h3>🗂️ 批量处理多个文件</h3>
+      <h3>批量处理多个文件</h3>
       <input type="file" id="batchFile" multiple hidden onchange="onBatchPick(event)">
       <div class="row">
-        <button onclick="pickFile('batchFile')">📂 选择多个文件</button>
+        <button onclick="pickFile('batchFile')">选择多个文件</button>
         <span id="batchFileName" class="file-name">未选择文件</span>
       </div>
       <label>批量操作</label>
@@ -183,14 +183,14 @@
           <option>德语</option><option>西班牙语</option><option>俄语</option><option>中文</option>
         </select>
       </div>
-      <button class="primary" onclick="batchRun()">🚀 开始批量处理并下载 ZIP</button>
+      <button class="primary" onclick="batchRun()">开始批量处理并下载 ZIP</button>
     </div>
   </section>
 
   <!-- ============ 设置 ============ -->
   <section id="tab-settings" class="panel">
     <div class="card">
-      <h3>⚙️ 大模型设置</h3>
+      <h3>大模型设置</h3>
       <label>服务提供方</label>
       <select id="providerIndex" onchange="applyProvider()"></select>
       <p class="hint" id="providerHint"></p>
@@ -207,21 +207,21 @@
       <label>系统提示词</label>
       <textarea id="systemPrompt" rows="2" placeholder="你是 office_ai 助手…"></textarea>
       <div class="row">
-        <button class="primary" onclick="saveSettings()">💾 保存设置</button>
-        <button onclick="testConn()">📡 测试连接</button>
+        <button class="primary" onclick="saveSettings()">保存设置</button>
+        <button onclick="testConn()">测试连接</button>
       </div>
       <p id="testResult"></p>
       <hr>
-      <h3>🔑 修改访问密码（默认 admin123）</h3>
+      <h3>修改访问密码（默认 admin123）</h3>
       <input type="password" id="newPassword" placeholder="新密码（至少 6 位）">
-      <button onclick="changePassword()">🔑 修改密码</button>
+      <button onclick="changePassword()">修改密码</button>
     </div>
   </section>
 </main>
 
 <div id="loginOverlay" class="login-overlay" hidden>
   <div class="login-box">
-    <h2>🔐 登录</h2>
+    <h2>登录</h2>
     <input type="password" id="loginPassword" placeholder="请输入访问密码" autocomplete="current-password">
     <button class="primary" onclick="doLogin()">登录</button>
     <p class="hint" id="loginMsg"></p>
@@ -229,7 +229,7 @@
 </div>
 
 <div id="busyOverlay" class="busy-overlay" hidden>
-  <div class="busy-box">⏳ AI 正在处理，请稍候…</div>
+  <div class="busy-box">AI 正在处理，请稍候...</div>
 </div>
 
 <script src="/static/app.js"></script>
