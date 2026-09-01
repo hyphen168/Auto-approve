@@ -54,7 +54,7 @@
       <h3>处理已有 Word 文档</h3>
       <input type="file" id="wordFile" accept=".docx" onchange="onFilePick('wordFile','wordFileName')">
       <div class="row">
-        <button onclick="pickFile('wordFile')">选择 Word 文档</button>
+        <label for="wordFile" class="btn-file">选择 Word 文档</label>
         <span id="wordFileName" class="file-name">未选择文件</span>
       </div>
       <div class="row">
@@ -75,7 +75,7 @@
       <h3>Word 模板套用（填充占位符）</h3>
       <input type="file" id="tplFile" accept=".docx" onchange="onFilePick('tplFile','tplFileName')">
       <div class="row">
-        <button onclick="pickFile('tplFile')">选择模板 DOCX</button>
+        <label for="tplFile" class="btn-file">选择模板 DOCX</label>
         <span id="tplFileName" class="file-name">未选择文件</span>
         <button class="primary" onclick="tplFields()">识别占位符</button>
       </div>
@@ -95,7 +95,7 @@
       <h3>Excel AI 分析</h3>
       <input type="file" id="excelFile" accept=".xlsx,.xlsm,.xltx,.xls" onchange="onExcelPick(event)">
       <div class="row">
-        <button onclick="pickFile('excelFile')">选择 Excel 文件</button>
+        <label for="excelFile" class="btn-file">选择 Excel 文件</label>
         <span id="excelFileName" class="file-name">未选择文件</span>
       </div>
       <label>分析附加要求（可选）</label>
@@ -147,7 +147,7 @@
       <h3>处理已有 PPT</h3>
       <input type="file" id="pptFile" accept=".pptx" onchange="onFilePick('pptFile','pptFileName')">
       <div class="row">
-        <button onclick="pickFile('pptFile')">选择 PPT 文件</button>
+        <label for="pptFile" class="btn-file">选择 PPT 文件</label>
         <span id="pptFileName" class="file-name">未选择文件</span>
         <button class="primary" onclick="pptSummarize()">生成摘要</button>
         <button onclick="convertToPdf('pptFile')">转 PDF</button>
@@ -165,7 +165,7 @@
       <h3>批量处理多个文件</h3>
       <input type="file" id="batchFile" multiple onchange="onBatchPick(event)">
       <div class="row">
-        <button onclick="pickFile('batchFile')">选择多个文件</button>
+        <label for="batchFile" class="btn-file">选择多个文件</label>
         <span id="batchFileName" class="file-name">未选择文件</span>
       </div>
       <label>批量操作</label>
