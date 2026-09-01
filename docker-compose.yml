@@ -1,0 +1,11 @@
+services:
+  office-ai:
+    build: .
+    container_name: office-ai-assistant
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
