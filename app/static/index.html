@@ -52,7 +52,7 @@
     </div>
     <div class="card">
       <h3>处理已有 Word 文档</h3>
-      <input type="file" id="wordFile" accept=".docx" hidden onchange="onFilePick('wordFile','wordFileName')">
+      <input type="file" id="wordFile" accept=".docx" onchange="onFilePick('wordFile','wordFileName')">
       <div class="row">
         <button onclick="pickFile('wordFile')">选择 Word 文档</button>
         <span id="wordFileName" class="file-name">未选择文件</span>
@@ -73,7 +73,7 @@
     </div>
     <div class="card">
       <h3>Word 模板套用（填充占位符）</h3>
-      <input type="file" id="tplFile" accept=".docx" hidden onchange="onFilePick('tplFile','tplFileName')">
+      <input type="file" id="tplFile" accept=".docx" onchange="onFilePick('tplFile','tplFileName')">
       <div class="row">
         <button onclick="pickFile('tplFile')">选择模板 DOCX</button>
         <span id="tplFileName" class="file-name">未选择文件</span>
@@ -93,7 +93,7 @@
   <section id="tab-excel" class="panel">
     <div class="card">
       <h3>Excel AI 分析</h3>
-      <input type="file" id="excelFile" accept=".xlsx,.xlsm,.xltx,.xls" hidden onchange="onExcelPick(event)">
+      <input type="file" id="excelFile" accept=".xlsx,.xlsm,.xltx,.xls" onchange="onExcelPick(event)">
       <div class="row">
         <button onclick="pickFile('excelFile')">选择 Excel 文件</button>
         <span id="excelFileName" class="file-name">未选择文件</span>
@@ -145,7 +145,7 @@
     </div>
     <div class="card">
       <h3>处理已有 PPT</h3>
-      <input type="file" id="pptFile" accept=".pptx" hidden onchange="onFilePick('pptFile','pptFileName')">
+      <input type="file" id="pptFile" accept=".pptx" onchange="onFilePick('pptFile','pptFileName')">
       <div class="row">
         <button onclick="pickFile('pptFile')">选择 PPT 文件</button>
         <span id="pptFileName" class="file-name">未选择文件</span>
@@ -163,7 +163,7 @@
   <section id="tab-batch" class="panel">
     <div class="card">
       <h3>批量处理多个文件</h3>
-      <input type="file" id="batchFile" multiple hidden onchange="onBatchPick(event)">
+      <input type="file" id="batchFile" multiple onchange="onBatchPick(event)">
       <div class="row">
         <button onclick="pickFile('batchFile')">选择多个文件</button>
         <span id="batchFileName" class="file-name">未选择文件</span>
